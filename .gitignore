@@ -1,0 +1,23 @@
+# dependencies
+/node_modules
+
+# build
+/dist
+/build
+
+# testing
+/coverage
+
+# environment variables
+.env
+.env.local
+
+# IDEs
+.vscode
+.idea
+
+# logs
+*.log
+
+# MacOS
+.DS_Store

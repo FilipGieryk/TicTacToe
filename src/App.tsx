@@ -1,6 +1,4 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
 const winningConditions = [
@@ -14,35 +12,35 @@ const winningConditions = [
   [2, 4, 6],
 ];
 function App() {
-  const [grid, setGrid] = useState(Array(9).fill(""));
-  const [currentPlayer, setCurrentPlayer] = useState("X");
-  const [winner, setWinner] = useState(null);
+  const [grid, setGrid] = useState<string[]>(Array(9).fill(""));
+  const [currentPlayer, setCurrentPlayer] = useState<string>("X");
+  const [winner, setWinner] = useState<string | null>(null);
 
-  const checkWinner = (grid) => {
+  const checkWinner = () => {
     for (let win of winningConditions) {
       const [a, b, c] = win;
       if (grid[a] && grid[a] === grid[b] && grid[a] === grid[c]) return grid[a];
     }
   };
 
-  const handleClick = (index) => {
+  const handleClick = (index:number) => {
     if (grid[index] !== "" || winner) return;
 
     const newGrid = [...grid];
     newGrid[index] = currentPlayer;
     setGrid(newGrid);
 
-    const checkWin = checkWinner(newGrid);
+    const checkWin = checkWinner();
     if (checkWin) {
       setWinner(checkWin);
     } else {
-      setCurrentPlayer((prev) => (prev === "X" ? "O" : "X"));
+      setCurrentPlayer((prev:string) => (prev === "X" ? "O" : "X"));
     }
   };
 
   const resetGame = () => {
     setGrid(Array(9).fill(""));
-    setWinner("");
+    setWinner(null);
     setCurrentPlayer("X");
   };
 
